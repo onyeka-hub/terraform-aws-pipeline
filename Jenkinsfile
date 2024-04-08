@@ -56,7 +56,8 @@ pipeline {
         stage('Checkout') {
             steps {
                 script {
-                    checkout scm
+                    // checkout scm
+                    checkout scmGit(branches: [[name: '*/feature-fix']], extensions: [], userRemoteConfigs: [[credentialsId: 'github-cred', url: 'https://github.com/onyeka-hub/terraform-aws-pipeline.git']])
                 }
             }
         }

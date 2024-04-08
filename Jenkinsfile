@@ -70,6 +70,7 @@ pipeline {
                     echo 'Terraform Lint executed successfully.'
                 }
             }
+          }
         }
 
         stage('Terraform Plan') {
@@ -101,7 +102,8 @@ pipeline {
                             sh 'terraform apply tfplan -input=false -no-color'
                         }
                         echo 'Terraform Apply executed successfully.'
-                    } catch (Exception e) {
+                    }
+                    catch (Exception e) {
                         echo "An error occurred: ${e.message}"
                         currentBuild.result = 'FAILURE'
                     }
@@ -129,37 +131,3 @@ pipeline {
         }
     }
   }
-}
-
-
-// pipeline {
-//     agent any
-    
-//     environment {
-//         // Assign the AWS credentials to the environment variable
-//         MAIN_BRANCH_CREDENTIALS = credentials('AWS_CRED')
-//     }
-
-//     stages {
-//         stage('Checkout') {
-//             steps {
-//                 script {
-//                     // Checkout the main branch from the Git repository
-//                     checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/onyeka-hub/terraform-aws-pipeline.git']]])
-//                 }
-//             }
-//         }
-
-//         stage('Build') {
-//             steps {
-//                 script {
-//                     // Use the AWS credentials stored in the environment variable
-//                     withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'AWS_CRED', accessKeyVariable: 'AWS_ACCESS_KEY_ID', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-//                         // Your build steps here
-//                         // You can access AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY variables here
-//                     }
-//                 }
-//             }
-//         }
-//     }
-// }

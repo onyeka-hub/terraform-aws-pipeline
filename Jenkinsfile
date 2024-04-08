@@ -90,9 +90,9 @@ pipeline {
 
         stage('Terraform Apply') {
             when {
-                // expression { env.BRANCH_NAME == 'feature-fix' }
-                // expression { currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause) != null }
-                expression { true }
+                expression { env.BRANCH_NAME == 'feature-fix' }
+                expression { currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause) != null }
+                // expression { true }
             }
             steps {
                 script {

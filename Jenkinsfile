@@ -89,7 +89,7 @@ pipeline {
         stage('Terraform Apply') {
             when {
                 expression { env.BRANCH_NAME == 'feature-fix' }
-                // expression { currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause) != null }
+                expression { currentBuild.rawBuild.getCause(hudson.model.Cause$UserIdCause) != null }
             }
             steps {
                 script {
@@ -103,10 +103,10 @@ pipeline {
                         }
                         echo 'Terraform Apply executed successfully.'
                     }
-                    catch (Exception e) {
-                        echo "An error occurred: ${e.message}"
-                        currentBuild.result = 'FAILURE'
-                    }
+                    // catch (Exception e) {
+                    //     echo "An error occurred: ${e.message}"
+                    //     currentBuild.result = 'FAILURE'
+                    // }
                 }
             }
         }

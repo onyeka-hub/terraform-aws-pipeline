@@ -64,6 +64,7 @@ pipeline {
             steps {
                 script {
                     echo 'Executing Terraform Lint...'
+                    withCredentials([aws(credentialsId: 'AWS_CRED', accessKeyVariable: 'AWS_ACCESS_KEY_ID', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                     sh 'terraform init -input=false -no-color'
                     sh 'terraform validate'
                     echo 'Terraform Lint executed successfully.'

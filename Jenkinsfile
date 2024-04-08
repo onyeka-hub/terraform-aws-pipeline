@@ -93,7 +93,6 @@ pipeline {
             }
             steps {
                 script {
-                    try {
                         // Ask for manual confirmation before applying changes
                         input message: 'Do you want to apply changes?', ok: 'Yes'
                         echo 'Executing Terraform Apply...'
@@ -109,8 +108,7 @@ pipeline {
                     // }
                 }
             }
-        }
-
+    
         stage('Error Handling') {
             when {
                 expression { currentBuild.result == 'SUCCESS' }

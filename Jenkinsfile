@@ -103,7 +103,7 @@ pipeline {
                         }
                         echo 'Terraform Apply executed successfully.'
                     }
-                    catch (Exception e) {
+                    catch(Exception e) {
                         echo "An error occurred: ${e.message}"
                         currentBuild.result = 'FAILURE'
                     }

@@ -113,9 +113,9 @@ pipeline {
             }
     
         stage('Error Handling') {
-            when {
-                expression { currentBuild.result == 'SUCCESS' }
-            }
+            // when {
+            //     expression { currentBuild.result == 'SUCCESS' }
+            // }
             steps {
                 echo 'Error occurred during pipeline execution. Handling...'
                 // Add error handling tasks here, if any

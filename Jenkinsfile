@@ -94,6 +94,7 @@ pipeline {
             // }
             steps {
                 script {
+                    try {
                         // Ask for manual confirmation before applying changes
                         input message: 'Do you want to apply changes?', ok: 'Yes'
                         echo 'Executing Terraform Apply...'
@@ -107,6 +108,7 @@ pipeline {
                         echo "An error occurred: ${e.message}"
                         currentBuild.result = 'FAILURE'
                     }
+                  }
                 }
             }
     
